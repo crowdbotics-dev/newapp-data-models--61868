@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  ScrollView,
-  Pressable
-} from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView, Pressable } from "react-native";
 
 const DiagnoseResultsLowRisk = () => {
   const [result, setResult] = useState("");
   useEffect(() => {
-    setResult(
-      "Based on your answers you have a less tendency of having COVID-19"
-    );
+    setResult("Based on your answers you have a less tendency of having COVID-19");
   }, []);
-  return (
-    <View style={styles.container}>
+  return <View style={styles.container}>
       <ScrollView style={styles.body}>
         <View style={styles.header}>
           <Text style={styles.title}>Step 4</Text>
@@ -25,40 +15,16 @@ const DiagnoseResultsLowRisk = () => {
             Your eligibility results are ready
           </Text>
         </View>
-        <Image
-          style={styles.image}
-          source={require("./assets/lowRiskIcon.png")}
-        />
-        <Button
-          buttonText={"Low Risk"}
-          color="rgba(113,177,84,0.3)"
-          textColor="#71B154"
-        />
+        <Image style={styles.image} source={require("./assets/lowRiskIcon.png")} />
+        <Button buttonText={"Low Risk"} color="rgba(113,177,84,0.3)" textColor="#71B154" />
         <Text style={styles.resultText}>{result}</Text>
-        <Button
-          buttonText="How to protect yourself"
-          outline={true}
-          hideShadow={true}
-        />
-        <Button
-          buttonText="What are the symptoms"
-          outline={true}
-          hideShadow={true}
-        />
+        <Button buttonText="How to protect yourself" outline={true} hideShadow={true} />
+        <Button buttonText="What are the symptoms" outline={true} hideShadow={true} />
       </ScrollView>
-      <Footer
-        titles={["Home", "Diagnose", "Stats", "Map"]}
-        images={[
-          require("./assets/homeIcon.png"),
-          require("./assets/diagnoseIconActive.png"),
-          require("./assets/statsIcon.png"),
-          require("./assets/mapIcon.png")
-        ]}
-        active={1}
-      />
-    </View>
-  );
+      <Footer titles={["Home", "Diagnose", "Stats", "Map"]} images={[require("./assets/homeIcon.png"), require("./assets/diagnoseIconActive.png"), require("./assets/statsIcon.png"), require("./assets/mapIcon.png")]} active={1} />
+    </View>;
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -108,34 +74,18 @@ const styles = StyleSheet.create({
     marginTop: 30
   }
 });
-
 export default DiagnoseResultsLowRisk;
-const Footer = (props) => {
+
+const Footer = props => {
   const generator = props.hideTitle ? props.images : props.titles;
-  return (
-    <View style={footerStyles.footer}>
-      {generator.map((title, index) => (
-        <View style={footerStyles.footerItem} key={index}>
-          <Image
-            style={footerStyles.footerImage}
-            source={props.images[index]}
-          />
-          {props.hideTitle
-            ? null
-            : (
-            <Text
-              style={[
-                footerStyles.footerItemText,
-                index === props.active ? footerStyles.active : null
-              ]}
-            >
+  return <View style={footerStyles.footer}>
+      {generator.map((title, index) => <View style={footerStyles.footerItem} key={index}>
+          <Image style={footerStyles.footerImage} source={props.images[index]} />
+          {props.hideTitle ? null : <Text style={[footerStyles.footerItemText, index === props.active ? footerStyles.active : null]}>
               {title}
-            </Text>
-              )}
-        </View>
-      ))}
-    </View>
-  );
+            </Text>}
+        </View>)}
+    </View>;
 };
 
 const footerStyles = StyleSheet.create({
@@ -170,7 +120,8 @@ const footerStyles = StyleSheet.create({
     color: "#000"
   }
 });
-const Button = (params) => {
+
+const Button = params => {
   const backgroundColor = params.color ? params.color : "#000";
   const textColor = params.textColor ? params.textColor : "#fff";
   const btnStyle = {
@@ -181,21 +132,16 @@ const Button = (params) => {
   const btnText = {
     color: params.outline ? "#000" : textColor
   };
-  return (
-    <View style={buttonStyles.btnContainer}>
+  return <View style={buttonStyles.btnContainer}>
       <View style={!params.hideShadow ? buttonStyles.shadowContainer : null}>
-        <Pressable
-          style={[buttonStyles.btn, btnStyle, params.style]}
-          onPress={params.onPress}
-        >
+        <Pressable style={[buttonStyles.btn, btnStyle, params.style]} onPress={params.onPress}>
           <Text style={[buttonStyles.btnText, btnText]}>
             {params.buttonText}
           </Text>
           <View style={styles.childrenContainer}>{params.children}</View>
         </Pressable>
       </View>
-    </View>
-  );
+    </View>;
 };
 
 const buttonStyles = StyleSheet.create({
@@ -218,7 +164,6 @@ const buttonStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-
     flexDirection: "row"
   },
   btnText: {

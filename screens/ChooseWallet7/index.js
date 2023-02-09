@@ -1,74 +1,42 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  Image,
-  Pressable
-} from "react-native";
+import { Text, View, StyleSheet, FlatList, Image, Pressable } from "react-native";
 
 const ChooseWallet = () => {
   const [wallets, setWallets] = useState([]);
   const [selectedWallet, setSelectedWallet] = useState(null);
   useEffect(() => {
-    setWallets([
-      {
-        name: "Metamask",
-        icon: require("./assets/metamaskIcon.png")
-      },
-      {
-        name: "Trust Wallet",
-        icon: require("./assets/trustIcon.png")
-      }
-    ]);
+    setWallets([{
+      name: "Metamask",
+      icon: require("./assets/metamaskIcon.png")
+    }, {
+      name: "Trust Wallet",
+      icon: require("./assets/trustIcon.png")
+    }]);
   }, []);
-  return (
-    <View style={styles.container}>
+  return <View style={styles.container}>
       <Text style={styles.heading}>Let&apos;s connect your wallet</Text>
       <Text style={styles.subHeading}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       </Text>
       <View>
-        <FlatList
-          style={styles.list}
-          data={wallets}
-          renderItem={({ item }) => (
-            <Pressable
-              style={[
-                styles.walletContainer,
-                item === selectedWallet && styles.selectedWallet
-              ]}
-              onPress={() => setSelectedWallet(item)}>
-              <Text
-                style={[
-                  styles.walletText,
-                  item === selectedWallet && styles.selectedWallet
-                ]}>
+        <FlatList style={styles.list} data={wallets} renderItem={({
+        item
+      }) => <Pressable style={[styles.walletContainer, item === selectedWallet && styles.selectedWallet]} onPress={() => setSelectedWallet(item)}>
+              <Text style={[styles.walletText, item === selectedWallet && styles.selectedWallet]}>
                 {item.name}
               </Text>
               <Image source={item.icon} style={styles.walletIcon} />
-            </Pressable>
-          )}
-          keyExtractor={item => item.name}
-        />
+            </Pressable>} keyExtractor={item => item.name} />
       </View>
       <Text style={styles.subHeading}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus luctus
         ultricies quis sapien faucibus egestas.
       </Text>
       <Button buttonText="Continue" style={styles.button} hideShadow />
-      <Button
-        buttonText="Leaarn more"
-        style={styles.button}
-        borderColor="#000"
-        textColor="#000"
-        backgroundColor="#fff"
-        hideShadow
-      />
-    </View>
-  );
+      <Button buttonText="Leaarn more" style={styles.button} borderColor="#000" textColor="#000" backgroundColor="#fff" hideShadow />
+    </View>;
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -124,8 +92,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 40
   }
 });
-
 export default ChooseWallet;
+
 const Button = params => {
   const backgroundColor = params.backgroundColor || "#000";
   const textColor = params.textColor || "#fff";
@@ -137,20 +105,16 @@ const Button = params => {
   const btnText = {
     color: textColor
   };
-  return (
-    <View style={[buttonStyles.btnContainer, params.style]}>
+  return <View style={[buttonStyles.btnContainer, params.style]}>
       <View style={!params.hideShadow ? buttonStyles.shadowContainer : null}>
-        <Pressable
-          style={[buttonStyles.btn, btnStyle]}
-          onPress={params.onPress}>
+        <Pressable style={[buttonStyles.btn, btnStyle]} onPress={params.onPress}>
           <Text style={[buttonStyles.btnText, btnText]}>
             {params.buttonText}
           </Text>
           <View style={styles.childrenContainer}>{params.children}</View>
         </Pressable>
       </View>
-    </View>
-  );
+    </View>;
 };
 
 const buttonStyles = StyleSheet.create({
@@ -176,7 +140,6 @@ const buttonStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-
     flexDirection: "row"
   },
   btnText: {
