@@ -17,7 +17,9 @@ const AddCardDetailsScreen = params => {
         <View style={styles.header}>
           <View style={styles.paletteContainer}>
             <View style={styles.unSelected}>
-              <Text>Linked Cards</Text>
+              <Pressable onPress={{}}><Pressable onPress={() => {
+                params.navigation.navigate("AccountSettingsScreen1");
+              }}><Text>Linked Cards</Text></Pressable></Pressable>
             </View>
             <View style={styles.selected}>
               <Pressable onPress={{}}><Pressable onPress={{}}><Pressable onPress={{}}><Pressable onPress={() => {
