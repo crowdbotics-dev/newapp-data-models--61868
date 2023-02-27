@@ -20,7 +20,9 @@ const AddCardDetailsScreen = params => {
               <Text>Linked Cards</Text>
             </View>
             <View style={styles.selected}>
-              <Text>Add Card</Text>
+              <Pressable onPress={{}}><Pressable onPress={{}}><Pressable onPress={{}}><Pressable onPress={() => {
+                    params.navigation.navigate("BlogpostScreen4");
+                  }}><Text>Add Card</Text></Pressable></Pressable></Pressable></Pressable>
             </View>
           </View>
         </View>
