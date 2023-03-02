@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { apiService } from "./api"
-export const boredapi20_get_activity_read = createAsyncThunk(
-  "boredapi20_response_get_GetActivities/boredapi20_get_activity_read",
+export const boredapi_get__read = createAsyncThunk(
+  "boredapi_response_get_Newdatacalls/boredapi_get__read",
   async payload => {
-    const response = await apiService.boredapi20_get_activity_read(payload)
+    const response = await apiService.boredapi_get__read(payload)
     return response.data
   }
 )
 const initialState = { entities: [], api: { loading: "idle", error: null } }
-const boredapi20_response_get_GetActivitiesSlice = createSlice({
-  name: "boredapi20_response_get_GetActivities",
+const boredapi_response_get_NewdatacallsSlice = createSlice({
+  name: "boredapi_response_get_Newdatacalls",
   initialState,
   reducers: {},
   extraReducers: {
-    [boredapi20_get_activity_read.pending]: (state, action) => {
+    [boredapi_get__read.pending]: (state, action) => {
       if (state.api.loading === "idle") {
         state.api.loading = "pending"
       }
     },
-    [boredapi20_get_activity_read.fulfilled]: (state, action) => {
+    [boredapi_get__read.fulfilled]: (state, action) => {
       if (state.api.loading === "pending") {
         state.entities = [
           ...state.entities.filter(record => record.id !== action.payload.id),
@@ -27,7 +27,7 @@ const boredapi20_response_get_GetActivitiesSlice = createSlice({
         state.api.loading = "idle"
       }
     },
-    [boredapi20_get_activity_read.rejected]: (state, action) => {
+    [boredapi_get__read.rejected]: (state, action) => {
       if (state.api.loading === "pending") {
         state.api.error = action.error
         state.api.loading = "idle"
@@ -36,6 +36,6 @@ const boredapi20_response_get_GetActivitiesSlice = createSlice({
   }
 })
 export default {
-  boredapi20_get_activity_read,
-  slice: boredapi20_response_get_GetActivitiesSlice
+  boredapi_get__read,
+  slice: boredapi_response_get_NewdatacallsSlice
 }
